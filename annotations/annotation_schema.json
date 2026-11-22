@@ -1,0 +1,137 @@
+{
+  "schema_version": "1.0",
+  "project_id": "CV26-subject-23",
+  "project_name": "Paired Real-World Scene Change and No-Change Dataset",
+  "description": "Annotation schema for paired scene change detection. Each record describes one image pair (before/after) with change label, region annotation, and capture metadata.",
+  "fields": {
+    "pair_id": {
+      "type": "string",
+      "format": "CV26_S23_PXXX",
+      "description": "Unique pair identifier",
+      "required": true
+    },
+    "before_image": {
+      "type": "string",
+      "description": "Relative path to the 'before' image",
+      "required": true
+    },
+    "after_image": {
+      "type": "string",
+      "description": "Relative path to the 'after' image",
+      "required": true
+    },
+    "change_label": {
+      "type": "string",
+      "enum": ["change", "no_change"],
+      "description": "Binary label indicating whether a real object change occurred",
+      "required": true
+    },
+    "change_type": {
+      "type": "string",
+      "enum": ["object_added", "object_removed", "object_moved", null],
+      "description": "Type of change. Null for no-change pairs",
+      "required": false
+    },
+    "change_description": {
+      "type": "string",
+      "description": "Brief human-readable description of what changed (or why it looks changed for no-change pairs)",
+      "required": true
+    },
+    "change_region_box": {
+      "type": "array",
+      "format": "[x_min, y_min, x_max, y_max]",
+      "description": "Bounding box around the changed region in the 'after' image. Null for no-change pairs",
+      "required": false
+    },
+    "change_mask_path": {
+      "type": "string",
+      "description": "Relative path to the binary PNG mask (white=changed, black=unchanged). Null for no-change pairs",
+      "required": false
+    },
+    "scene_category": {
+      "type": "string",
+      "enum": [
+        "indoor_room",
+        "indoor_kitchen",
+        "indoor_classroom",
+        "indoor_office",
+        "outdoor_courtyard",
+        "outdoor_garden",
+        "outdoor_street",
+        "other"
+      ],
+      "description": "Category of the scene location",
+      "required": true
+    },
+    "time_gap_minutes": {
+      "type": "integer",
+      "description": "Approximate time in minutes between 'before' and 'after' capture",
+      "required": true
+    },
+    "illumination_before": {
+      "type": "string",
+      "enum": ["natural_daylight", "artificial_indoor", "mixed", "overcast", "sunset"],
+      "description": "Lighting condition during 'before' capture",
+      "required": true
+    },
+    "illumination_after": {
+      "type": "string",
+      "enum": ["natural_daylight", "artificial_indoor", "mixed", "overcast", "sunset"],
+      "description": "Lighting condition during 'after' capture",
+      "required": true
+    },
+    "illumination_changed": {
+      "type": "boolean",
+      "description": "True if lighting conditions visibly differ between the two captures",
+      "required": true
+    },
+    "viewpoint_shift": {
+      "type": "string",
+      "enum": ["none", "slight", "moderate"],
+      "description": "Degree of camera position shift between captures. 'none' = tripod-stable, 'slight' = minor hand re-alignment, 'moderate' = visible framing difference",
+      "required": true
+    },
+    "camera_device": {
+      "type": "string",
+      "description": "Camera/phone model used for capture",
+      "required": true
+    },
+    "capture_date": {
+      "type": "string",
+      "format": "YYYY-MM-DD",
+      "description": "Date of capture (ISO format)",
+      "required": true
+    },
+    "verified": {
+      "type": "boolean",
+      "description": "Whether this pair has been independently verified by a second annotator",
+      "required": true
+    },
+    "verifier_id": {
+      "type": "string",
+      "description": "Pseudonymous identifier of the independent verifier. Null if not yet verified",
+      "required": false
+    },
+    "quality_flags": {
+      "type": "array",
+      "items": "string",
+      "accepted_values": [
+        "slight_blur",
+        "shadow_overlap",
+        "partial_occlusion",
+        "reflection_artifact",
+        "exposure_mismatch",
+        "framing_shift",
+        "motion_blur",
+        "low_contrast"
+      ],
+      "description": "List of quality issues noted for this pair. Empty array if no issues",
+      "required": true
+    },
+    "notes": {
+      "type": "string",
+      "description": "Free-text notes about this pair",
+      "required": false
+    }
+  }
+}

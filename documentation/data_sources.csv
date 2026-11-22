@@ -1,0 +1,4 @@
+source_name,official_url,authors,year,task,license_checked,access_date,access_restrictions,used_for,notes
+LEVIR-CD,https://justchenhao.github.io/LEVIR/,"Chen, Shi",2020,Remote sensing change detection,Yes,,Open academic,comparison_only,Satellite imagery bi-temporal pairs
+CDnet 2014,http://changedetection.net/,"Goyette, Jodoin et al.",2014,Video change detection,Yes,,Open academic,comparison_only,Fixed-camera video sequences
+"Kim & Kim CVPR 2025",,Kim and Kim,2025,Scene change detection,Yes,,Paper,comparison_only,Method paper — main research reference

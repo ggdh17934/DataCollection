@@ -1,0 +1,23 @@
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+
+# IDE
+.vscode/
+.idea/
+
+# Original PDF handbook (keep local, don't push)
+*.pdf
+!report/report.pdf
+!presentation/final_slides.pdf
+
+# Large files (use Git LFS if needed)
+# *.jpg
+# *.png
