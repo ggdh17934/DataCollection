@@ -3,6 +3,10 @@
 Thumbs.db
 desktop.ini
 
+# Environment / Secrets
+.env
+*.env
+
 # Python
 __pycache__/
 *.pyc
